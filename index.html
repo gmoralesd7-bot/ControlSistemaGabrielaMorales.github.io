@@ -1,43 +1,134 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-<meta charset="UTF-8">
-<title>Control Avances del Sistema</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Ingreso Constrol Sistema</title>
 
-<style>
-  body {
-    font-family: Arial, sans-serif;
-    text-align: center;
-    margin-top: 80px;
-  }
+  <!-- Tipografía formal -->
+  <link href="https://fonts.googleapis.com/css2?family=Merriweather:wght@300;400;700&display=swap" rel="stylesheet">
 
-  h1 {
-    font-size: 48px;
-    color: #003366;
-    margin-bottom: 60px;
-  }
+  <style>
+    :root{
+      --bg-100: #0d1b2a;
+      --bg-200: #1b263b;
+      --bg-500: #1e3a8a;
+      --accent: #e0e6f0;
+      --card: rgba(15,25,45,0.9);
+      --radius: 12px;
+      --formal-font: Arial, Helvetica, sans-serif;
+    }
 
-  .button {
-    background-color: #003366; /* Azul oscuro */
-    border: none;
-    color: white;
-    padding: 20px 50px;
-    font-size: 22px;
-    border-radius: 8px;
-    cursor: pointer;
-    margin: 15px;
-  }
+    *{ box-sizing: border-box; }
+    body{
+      margin:0;
+      font-family: var(--formal-font);
+      background: linear-gradient(180deg,var(--bg-100),var(--bg-200));
+      height:100vh;
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+      color:var(--accent);
+    }
 
-  .button:hover {
-    background-color: #002244;
-  }
-</style>
+    .login-box{
+      background:var(--card);
+      padding:30px;
+      border-radius:var(--radius);
+      width:100%;
+      max-width:420px;
+      box-shadow:0 8px 25px rgba(0,0,0,0.15);
+      text-align:center;
+    }
 
+    input{
+      width:100%;
+      padding:12px;
+      border-radius:10px;
+      border:1px solid rgba(0,0,0,0.2);
+      margin-top:10px;
+      font-size:16px;
+      font-family:var(--formal-font);
+    }
+
+    .btn-login{
+      margin-top:15px;
+      width:100%;
+      padding:12px;
+      border:none;
+      border-radius:10px;
+      background:var(--bg-500);
+      color:white;
+      font-size:16px;
+      cursor:pointer;
+    }
+
+    .error{
+      color:#cc1f1f;
+      margin-top:10px;
+      font-size:14px;
+      display:none;
+    }
+
+    /* Panel de botones (después de ingresar) */
+    .panel{
+      display:none;
+      text-align:center;
+    }
+
+    .button {
+      border: none;
+      color: white;
+      padding: 15px 32px;
+      text-align: center;
+      font-size: 16px;
+      margin: 8px;
+      cursor: pointer;
+      border-radius: 10px;
+      display:inline-block;
+    }
+    .button1 { background-color: #04AA6D; }
+    .button2 { background-color: #008CBA; }
+  </style>
 </head>
 <body>
 
-  <h1>CONTROL AVANCES DEL SISTEMA</h1>
+  <!-- Caja de ingreso -->
+  <div id="login" class="login-box">
+    <h2>Ingreso al Control</h2>
+    <p>Ingrese la contraseña:</p>
 
-  <button class="button" onclick="document.location='estructura.html'">Estructura</button>
-  <button class="button" onclick="document.location='agente.html'">% de Efectividad</button>
-  <button class="button" onclick="document.
+    <input id="password" type="password" placeholder="Contraseña">
+    <button class="btn-login" id="btnIngresar">Ingresar</button>
+
+    <div id="error" class="error">Contraseña incorrecta</div>
+  </div>
+
+  <!-- Panel de botones (solo aparece al ingresar correctamente) -->
+  <div id="panel" class="panel">
+    <h1>Control Sistema HVC Kapital </h1>
+    <button class="button button1" onclick="document.location='estructura.html'">Estructura</button>
+    <button class="button button2" onclick="document.location='agente.html'">% De Efectividad</button>
+    <button class="button button1" onclick="document.location='requerimientos.html'">Requerimientos</button>
+  </div>
+
+<script>
+  const btn = document.getElementById('btnIngresar');
+  const input = document.getElementById('password');
+  const error = document.getElementById('error');
+  const loginBox = document.getElementById('login');
+  const panel = document.getElementById('panel');
+
+  btn.addEventListener('click', () => {
+    if(input.value === 'admin$1'){
+      loginBox.style.display = 'none';
+      panel.style.display = 'block';
+    } else {
+      error.style.display = 'block';
+    }
+  });
+</script>
+
+</body>
+</html>
